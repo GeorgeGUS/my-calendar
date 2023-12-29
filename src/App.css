@@ -1,0 +1,32 @@
+.year {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-content: center;
+  grid-gap: 20px 40px;
+  padding: 20px 40px;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  place-content: start;
+  grid-gap: 4px;
+}
+
+.day {
+  text-align: center;
+  line-height: 1.7;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px #ccc;
+}
