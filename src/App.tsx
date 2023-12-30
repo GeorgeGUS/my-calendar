@@ -1,4 +1,6 @@
+import { DAYS_OF_WEEK } from "./constants";
 import { getCalendarData } from "./logic/getCalendarData";
+import { getDayClassName } from "./logic/getDayClassName";
 import "./App.css";
 
 function App() {
@@ -9,17 +11,11 @@ function App() {
       {calendar.months.map((month) => (
         <div className="month">
           <h2 className="title">{month.monthName}</h2>
+          {DAYS_OF_WEEK.map((day) => (
+            <div className="dayOfWeek">{day}</div>
+          ))}
           {month.days.map((day) => (
-            <div
-              className="day"
-              style={{
-                gridColumnStart: day.dayOfWeek + 1,
-                backgroundColor: day.color,
-                boxShadow: day.color ? "none" : undefined,
-              }}
-            >
-              {day.dayOfMonth}
-            </div>
+            <div className={getDayClassName(day)}>{day.dayOfMonth}</div>
           ))}
         </div>
       ))}

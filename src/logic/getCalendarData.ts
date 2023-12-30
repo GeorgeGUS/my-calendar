@@ -18,13 +18,12 @@ interface Month {
   days: Day[];
 }
 
-interface Day {
+export interface Day {
   dayOfMonth: number;
   dayOfWeek: number;
   isWeekend: boolean;
   isHoliday: boolean;
   isPreHoliday: boolean;
-  color?: string;
 }
 
 export const getCalendarData = (year: number): CalendarData => {
@@ -39,19 +38,13 @@ export const getCalendarData = (year: number): CalendarData => {
     const isWeekend = dayOfWeek === 5 || dayOfWeek === 6;
     const isHoliday = holidays.holidays.includes(formattedDate);
     const isPreHoliday = holidays.preholidays.includes(formattedDate);
-    let color;
-    if (isHoliday || isWeekend) {
-      color = "lightsalmon";
-    } else if (isPreHoliday) {
-      color = "navajowhite";
-    }
+
     const dayData: Day = {
       dayOfMonth: getDate(date),
       dayOfWeek,
       isWeekend,
       isHoliday,
       isPreHoliday,
-      color,
     };
 
     if (!daysByMonth[month]) {
