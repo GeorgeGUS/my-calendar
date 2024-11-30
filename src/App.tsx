@@ -1,10 +1,15 @@
 import { DAYS_OF_WEEK } from "./constants";
 import { getCalendarData } from "./logic/getCalendarData";
 import { getDayClassName } from "./logic/getDayClassName";
+import { useHolidaysQuery } from "./hooks/useHolidaysQuery";
 import "./App.css";
 
+const YEAR = 2025;
+
 function App() {
-  const calendar = getCalendarData(2024);
+  const { holidays } = useHolidaysQuery(YEAR);
+  const calendar = getCalendarData(YEAR, holidays);
+
   return (
     <div className="year">
       <h1 className="title">Календарь на {calendar.year} год</h1>

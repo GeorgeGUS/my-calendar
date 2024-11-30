@@ -6,9 +6,9 @@ import {
   formatISO,
   intlFormat,
 } from "date-fns";
-import holidays from "../assets/holidays2024.json";
+import { Holidays } from "../ports/holidays/interface";
 
-interface CalendarData {
+export interface CalendarData {
   year: number;
   months: Month[];
 }
@@ -26,7 +26,10 @@ export interface Day {
   isPreHoliday: boolean;
 }
 
-export const getCalendarData = (year: number): CalendarData => {
+export const getCalendarData = (
+  year: number,
+  holidays: Holidays | undefined
+): CalendarData => {
   const daysInYear = getDaysInYear(new Date(year, 0, 1));
   const daysByMonth: Record<string, any> = {};
 
@@ -36,8 +39,8 @@ export const getCalendarData = (year: number): CalendarData => {
     const month = getMonth(date);
     const dayOfWeek = getDay(new Date(year, 0, day - 1));
     const isWeekend = dayOfWeek === 5 || dayOfWeek === 6;
-    const isHoliday = holidays.holidays.includes(formattedDate);
-    const isPreHoliday = holidays.preholidays.includes(formattedDate);
+    const isHoliday = holidays?.holidays.includes(formattedDate) || false;
+    const isPreHoliday = holidays?.preholidays.includes(formattedDate) || false;
 
     const dayData: Day = {
       dayOfMonth: getDate(date),
