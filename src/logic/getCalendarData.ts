@@ -31,7 +31,7 @@ export const getCalendarData = (
   holidays: Holidays | undefined
 ): CalendarData => {
   const daysInYear = getDaysInYear(new Date(year, 0, 1));
-  const daysByMonth: Record<string, any> = {};
+  const daysByMonth: Record<string, Month> = {};
 
   for (let day = 1; day <= daysInYear; day++) {
     const date = new Date(year, 0, day);

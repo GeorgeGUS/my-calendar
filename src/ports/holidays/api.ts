@@ -7,5 +7,10 @@ const getUrl = (year: number): string =>
   `${HOLIDAYS_API_URL}/consultant${year}.json`;
 
 export const fetchHolidays = async (year: number): Promise<Holidays> => {
-  return fetch(getUrl(year)).then((data) => data.json());
+  return fetch(getUrl(year)).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    throw new Error(`${res.status}: Holidays not found for this year`);
+  });
 };
